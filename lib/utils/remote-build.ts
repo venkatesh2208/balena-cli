@@ -289,12 +289,13 @@ async function getTarStream(build: RemoteBuild): Promise<Stream.Readable> {
 
 	try {
 		tarSpinner.start();
-		return await tarDirectory(
+		await tarDirectory(
 			path.resolve(build.source),
 			Object.keys(build.opts.registrySecrets).length > 0
 				? preFinalizeCallback
 				: undefined,
 		);
+		throw new Error('foo');
 	} finally {
 		tarSpinner.stop();
 	}
