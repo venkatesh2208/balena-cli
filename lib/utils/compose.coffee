@@ -171,6 +171,7 @@ exports.tarDirectory = tarDirectory = (dir, { preFinalizeCallback, convertEol } 
 			ignore.addIgnoreFile(file, type)
 	.filter(ignore.filter)
 	.map (file) ->
+		console.error("tarDirectory packing file '#{file}'")
 		relPath = path.relative(path.resolve(dir), file)
 		Promise.join relPath, fs.stat(file), readFile(file),
 			(filename, stats, data) ->

@@ -57,6 +57,7 @@ export class FileIgnorer {
 	];
 
 	public constructor(public basePath: string) {
+		console.error(`FileIgnorer basePath="${basePath}"`);
 		this.dockerIgnoreEntries = [];
 		this.gitIgnoreEntries = [];
 	}
@@ -89,6 +90,7 @@ export class FileIgnorer {
 		fullPath: string,
 		type: IgnoreFileType,
 	): Promise<void> {
+		console.error(`addIgnoreFile type=${type} fullPath="${fullPath}"`);
 		const contents = await fs.readFile(fullPath, 'utf8');
 
 		contents.split('\n').forEach(line => {
@@ -112,6 +114,7 @@ export class FileIgnorer {
 		// The regex below matches `.balena/qemu` and `myservice/.balena/qemu`
 		// but not `some.dir.for.balena/qemu`.
 		if (/(^|\/)\.(balena|resin)\//.test(toPosixPath(relFile))) {
+			console.error(`FileIgnorer filter TRUE relFile="${relFile}"`);
 			return true;
 		}
 
@@ -120,6 +123,7 @@ export class FileIgnorer {
 			/^Dockerfile$|^Dockerfile\.\S+/.test(path.basename(relFile)) ||
 			path.basename(relFile) === 'docker-compose.yml'
 		) {
+			console.error(`FileIgnorer filter TRUE relFile="${relFile}"`);
 			return true;
 		}
 
@@ -147,7 +151,9 @@ export class FileIgnorer {
 			});
 		});
 
-		return !_.some(ignoreTypes, ({ handle }) => handle.ignores(relFile));
+		const r = !_.some(ignoreTypes, ({ handle }) => handle.ignores(relFile));
+		console.error(`FileIgnorer filter ${r ? 'TRUE' : 'FALSE'} relFile="${relFile}"`);
+		return r;
 	}; // tslint:disable-line:semicolon
 
 	private addEntry(

@@ -304,6 +304,7 @@ async function getTarStream(build: RemoteBuild): Promise<Stream.Readable> {
 		});
 	} finally {
 		tarSpinner.stop();
+		throw new Error('foo');
 	}
 }
 
