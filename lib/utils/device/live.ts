@@ -1,6 +1,6 @@
 import * as Bluebird from 'bluebird';
 import * as chokidar from 'chokidar';
-import * as Dockerode from 'dockerode';
+import type * as Dockerode from 'dockerode';
 import Livepush, { ContainerNotRunningError } from 'livepush';
 import * as _ from 'lodash';
 import * as path from 'path';

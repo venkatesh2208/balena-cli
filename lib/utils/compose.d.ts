@@ -16,9 +16,9 @@
  */
 
 import * as Bluebird from 'bluebird';
-import { Composition } from 'resin-compose-parse';
-import * as Stream from 'stream';
-import { Pack } from 'tar-stream';
+import type { Composition } from 'resin-compose-parse';
+import type * as Stream from 'stream';
+import type { Pack } from 'tar-stream';
 
 import Logger = require('./logger');
 

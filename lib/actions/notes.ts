@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { CommandDefinition } from 'capitano';
+import type { CommandDefinition } from 'capitano';
 
 export const set: CommandDefinition<{ note: string }, { device: string }> = {
 	signature: 'note <|note>',

@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-import * as Bluebird from 'bluebird';
-import DockerToolbelt = require('docker-toolbelt');
+import type * as Bluebird from 'bluebird';
+import type * as DockerToolbelt from 'docker-toolbelt';
 
 export interface BuildDockerOptions {
 	ca?: string; // path to ca (Certificate Authority) file (TLS)

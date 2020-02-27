@@ -18,7 +18,7 @@
 import * as Bluebird from 'bluebird';
 import * as Docker from 'dockerode';
 import * as _ from 'lodash';
-import { Composition } from 'resin-compose-parse';
+import type { Composition } from 'resin-compose-parse';
 import {
 	BuildTask,
 	getAuthConfigObj,
@@ -26,7 +26,7 @@ import {
 	RegistrySecrets,
 } from 'resin-multibuild';
 import * as semver from 'resin-semver';
-import { Readable } from 'stream';
+import type { Readable } from 'stream';
 
 import { BALENA_ENGINE_TMP_PATH } from '../../config';
 import {

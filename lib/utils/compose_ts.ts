@@ -14,20 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { BalenaSDK } from 'balena-sdk';
+import type { BalenaSDK } from 'balena-sdk';
 import * as Bluebird from 'bluebird';
 import { stripIndent } from 'common-tags';
-import Dockerode = require('dockerode');
+import type * as Dockerode from 'dockerode';
 import * as _ from 'lodash';
 import { fs } from 'mz';
 import * as path from 'path';
-import { Composition } from 'resin-compose-parse';
+import type { Composition } from 'resin-compose-parse';
 import * as MultiBuild from 'resin-multibuild';
-import { Readable } from 'stream';
-import * as tar from 'tar-stream';
+import type { Readable } from 'stream';
+import type * as tar from 'tar-stream';
 
 import { ExpectedError } from '../errors';
-import { DeviceInfo } from './device/api';
+import type { DeviceInfo } from './device/api';
 import Logger = require('./logger');
 
 export interface RegistrySecrets {

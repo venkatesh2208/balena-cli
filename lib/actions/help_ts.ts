@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Command } from '@oclif/command';
+import type { Command } from '@oclif/command';
 import * as Bluebird from 'bluebird';
 import * as _ from 'lodash';
 import * as path from 'path';

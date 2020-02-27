@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import * as _sdk from 'etcher-sdk';
+import type * as _sdk from 'etcher-sdk';
 
 import { CustomDynamicList } from './custom-dynamic-list';
 

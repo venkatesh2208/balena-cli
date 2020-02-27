@@ -19,8 +19,8 @@ import Bluebird = require('bluebird');
 import chalk from 'chalk';
 import { stripIndent } from 'common-tags';
 import _ = require('lodash');
-import _form = require('resin-cli-form');
-import _visuals = require('resin-cli-visuals');
+import type * as _form from 'resin-cli-form';
+import type * as _visuals from 'resin-cli-visuals';
 
 import { NotLoggedInError } from '../errors';
 import messages = require('./messages');

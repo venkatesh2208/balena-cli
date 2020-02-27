@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { CommandDefinition } from 'capitano';
+import type { CommandDefinition } from 'capitano';
 import chalk from 'chalk';
 import { stripIndent } from 'common-tags';
-import * as SDK from 'etcher-sdk';
+import type * as SDK from 'etcher-sdk';
 
 async function getDrive(options: {
 	drive?: string;

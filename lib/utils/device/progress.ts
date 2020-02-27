@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import * as BalenaDeviceStatus from 'balena-device-status';
-import { Device } from 'balena-sdk';
+import type { Device } from 'balena-sdk';
 
 export const getDeviceOsProgress = (device: Device) => {
 	if (!device.is_online) {

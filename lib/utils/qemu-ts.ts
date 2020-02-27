@@ -16,7 +16,7 @@
  */
 
 import { stripIndent } from 'common-tags';
-import Dockerode = require('dockerode');
+import type * as Dockerode from 'dockerode';
 
 import Logger = require('./logger');
 import { getQemuPath, installQemu } from './qemu';

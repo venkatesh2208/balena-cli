@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { InitializeEmitter, OperationState } from 'balena-device-init';
+import type { InitializeEmitter, OperationState } from 'balena-device-init';
 import BalenaSdk = require('balena-sdk');
 import Bluebird = require('bluebird');
 import chalk from 'chalk';
