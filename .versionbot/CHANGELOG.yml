@@ -1,4 +1,14 @@
 - commits:
+    - subject: Use `import type` where possible to explicitly import only type info
+      hash: ec867e5afe9d409e8bd41f1b661f49838bd84b48
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 11.28.5
+  date: 2020-02-27T12:42:53.144Z
+- commits:
     - subject: >-
         Fix build/deploy commands with QEMU emulation and alternative Dockerfile
         name
