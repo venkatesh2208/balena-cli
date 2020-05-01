@@ -53,6 +53,7 @@
     "package": "npm run build:fast && npm run build:standalone && npm run build:installer",
     "release": "ts-node --transpile-only automation/run.ts release",
     "pretest": "npm run build",
+    "t": "mocha --timeout 6000 -r ts-node/register/transpile-only \"tests/**/push.spec.ts\"",
     "test": "mocha --timeout 6000 -r ts-node/register/transpile-only \"tests/**/*.spec.ts\"",
     "test:fast": "npm run build:fast && mocha --timeout 6000 -r ts-node/register/transpile-only \"tests/**/*.spec.ts\"",
     "catch-uncommitted": "ts-node --transpile-only automation/run.ts catch-uncommitted",
@@ -164,6 +165,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@balena/dockerignore": "^1.0.1",
     "@oclif/command": "^1.5.19",
     "@resin.io/valid-email": "^0.1.0",
     "@sentry/node": "^5.13.2",

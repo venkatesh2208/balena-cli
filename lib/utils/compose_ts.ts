@@ -24,7 +24,6 @@ import * as path from 'path';
 import { Composition } from 'resin-compose-parse';
 import * as MultiBuild from 'resin-multibuild';
 import { Readable } from 'stream';
-import * as tar from 'tar-stream';
 
 import { ExpectedError } from '../errors';
 import { DeviceInfo } from './device/api';
@@ -154,6 +153,94 @@ async function loadBuildMetatada(
 		);
 	}
 	return [buildMetadata, metadataPath];
+}
+
+/**
+ * Create a tar stream out of the local filesystem at the given directory,
+ * while optionally applying file filters such as '.dockerignore' and
+ * optionally converting text file line endings (CRLF to LF).
+ * @param dir Source directory
+ * @param param Options
+ * @returns {Promise<import('stream').Readable>}
+ */
+export async function tarDirectory(
+	dir: string,
+	{
+		preFinalizeCallback,
+		convertEol = false,
+		nogitignore = false,
+	}: import('./compose-types').TarDirectoryOptions,
+): Promise<import('stream').Readable> {
+	(await import('assert')).strict.strictEqual(nogitignore, true);
+	const { filterFilesWithDockerignore } = await import('./ignore');
+	const { toPosixPath } = (await import('resin-multibuild')).PathUtils;
+	const tar = await import('tar-stream');
+
+	let readFile: (file: string) => Promise<Buffer>;
+	if (process.platform === 'win32') {
+		const { readFileWithEolConversion } = require('./eol-conversion');
+		readFile = file => readFileWithEolConversion(file, convertEol);
+	} else {
+		readFile = fs.readFile;
+	}
+	const pack = tar.pack();
+	const fileStatsList = await filterFilesWithDockerignore(dir);
+	for (const fileStats of fileStatsList) {
+		pack.entry(
+			{
+				name: toPosixPath(fileStats.relPath),
+				size: fileStats.stats.size,
+				mode: fileStats.stats.mode,
+			},
+			await readFile(fileStats.filePath),
+		);
+	}
+	if (preFinalizeCallback) {
+		await preFinalizeCallback(pack);
+	}
+	pack.finalize();
+	return pack;
+}
+
+/**
+ * Print a deprecation warning if any '.gitignore' or '.dockerignore' file is
+ * found and the --nogitignore (-G) option has not been provided.
+ * @param dockerignoreFile Absolute path to a .dockerignore file
+ * @param gitignoreFiles Array of absolute paths to .gitginore files
+ */
+export function printGitignoreWarn(
+	dockerignoreFile: string,
+	gitignoreFiles: string[],
+) {
+	const ignoreFiles = [dockerignoreFile, ...gitignoreFiles].filter(e => e);
+	if (ignoreFiles.length === 0) {
+		return;
+	}
+	const hr =
+		'-------------------------------------------------------------------------------';
+	const msg = [hr, 'Using file ignore patterns from:'];
+	msg.push(...ignoreFiles);
+	if (gitignoreFiles.length) {
+		msg.push(stripIndent`
+			balena CLI currently uses gitgnore and dockerignore files, but an upcoming major
+			version release will disregard gitignore files and use a dockerignore file only.
+			Use the --nogitignore (-G) option to enable the new behavior already now and
+			supress this warning. For more information, see 'balena help ${Logger.command}'.
+		`);
+		msg.push(hr);
+		Logger.getLogger().logWarn(msg.join('\n'));
+	} else if (dockerignoreFile && process.platform === 'win32') {
+		msg.push(stripIndent`
+			Use the --nogitignore (-G) option to supress this warning and enable the use
+			of a better dockerignore parser and filter library that fixes several issues
+			on Windows and improves compatibility with "docker build", but which may also
+			cause a different set of files to be filtered out (because of the bug fixes).
+			The --nogitignore option will be the default behavior in an upcoming balena CLI
+			major version release. For more information, see 'balena help ${Logger.command}'.
+		`);
+		msg.push(hr);
+		Logger.getLogger().logWarn(msg.join('\n'));
+	}
 }
 
 /**
@@ -308,7 +395,7 @@ async function performResolution(
 			//     task.projectType, task.resolved
 			// This mimics what is currently done in `resin-builder`.
 			return cloneTarStream(buildTask.buildStream).then(
-				(clonedStream: tar.Pack) => {
+				(clonedStream: import('tar-stream').Pack) => {
 					buildTask.buildStream = clonedStream;
 					if (!buildTask.external && !buildTask.resolved) {
 						throw new Error(

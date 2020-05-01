@@ -20,7 +20,7 @@ import { stripIndent } from 'common-tags';
 
 import { ExpectedError } from '../errors';
 import { getBalenaSdk } from '../utils/lazy';
-import { registrySecretsHelp } from '../utils/messages';
+import { dockerignoreHelp, registrySecretsHelp } from '../utils/messages';
 import {
 	validateApplicationName,
 	validateDotLocalUrl,
@@ -109,6 +109,7 @@ export const push: CommandDefinition<
 		nocache?: boolean;
 		'noparent-check'?: boolean;
 		'registry-secrets'?: string;
+		nogitignore?: boolean;
 		nolive?: boolean;
 		detached?: boolean;
 		service?: string | string[];
@@ -148,6 +149,8 @@ export const push: CommandDefinition<
 
 		${registrySecretsHelp.split('\n').join('\n\t\t')}
 
+		${dockerignoreHelp.split('\n').join('\n\t\t')}
+
 		Examples:
 
 			$ balena push myApp
@@ -168,7 +171,7 @@ export const push: CommandDefinition<
 			signature: 'source',
 			alias: 's',
 			description:
-				'The source that should be sent to the balena builder to be built (defaults to the current directory)',
+				'Project directory to be sent to balenaCloud or local device (default: current working dir)',
 			parameter: 'source',
 		},
 		{
@@ -259,6 +262,17 @@ export const push: CommandDefinition<
 				Source files are not modified.`,
 			boolean: true,
 		},
+		{
+			signature: 'nogitignore',
+			alias: 'G',
+			description: stripIndent`
+				Disregard all .gitignore files, and consider only the .dockerignore file (if any)
+				at the source directory (build context root). This will be the default behavior
+				in the next major version release. Reference:
+				https://github.com/balena-io/balena-cli/issues/1032
+			`,
+			boolean: true,
+		},
 	],
 	async action(params, options) {
 		const sdk = getBalenaSdk();
@@ -336,6 +350,7 @@ export const push: CommandDefinition<
 							source,
 							auth: token,
 							baseUrl,
+							nogitignore: !!options.nogitignore,
 							sdk,
 							opts,
 						};
@@ -359,6 +374,7 @@ export const push: CommandDefinition<
 						dockerfilePath,
 						registrySecrets,
 						nocache: options.nocache || false,
+						nogitignore: options.nogitignore || false,
 						noParentCheck: options['noparent-check'] || false,
 						nolive: options.nolive || false,
 						detached: options.detached || false,

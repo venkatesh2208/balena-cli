@@ -104,6 +104,11 @@
         }
       }
     },
+    "@balena/dockerignore": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/@balena/dockerignore/-/dockerignore-1.0.1.tgz",
+      "integrity": "sha512-vuNKAQAb29O4/zCYRZWxKzjDJVFG3n3oJtUYRzEJLqTmcQ1r787uU6YIHbNiS0HR7cnzPwSnS6aDukguiOdVzA=="
+    },
     "@balena/lint": {
       "version": "4.1.1",
       "resolved": "https://registry.npmjs.org/@balena/lint/-/lint-4.1.1.tgz",
