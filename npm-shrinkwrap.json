@@ -1100,9 +1100,9 @@
       "integrity": "sha512-kMNLM5JBcasgYscD9x/Gvr6lTAv2NVgsKtet/hm93qMyf/D1pt+7jeEZklKJKxMVmXjxbRVQQGfqDSfipYCO6w=="
     },
     "@types/memoizee": {
-      "version": "0.4.3",
-      "resolved": "https://registry.npmjs.org/@types/memoizee/-/memoizee-0.4.3.tgz",
-      "integrity": "sha512-N6QT0c9ZbEKl33n1wyoTxZs4cpN+YXjs0Aqy5Qim8ipd9PBNIPqOh/p5Pixc4601tqr5GErsdxUbfqviDfubNw=="
+      "version": "0.4.4",
+      "resolved": "https://registry.npmjs.org/@types/memoizee/-/memoizee-0.4.4.tgz",
+      "integrity": "sha512-c9+1g6+6vEqcw5UuM0RbfQV0mssmZcoG9+hNC5ptDCsv4G+XJW1Z4pE13wV5zbc9e0+YrDydALBTiD3nWG1a3g=="
     },
     "@types/mime": {
       "version": "2.0.1",
@@ -2279,9 +2279,9 @@
       }
     },
     "balena-register-device": {
-      "version": "6.1.0",
-      "resolved": "https://registry.npmjs.org/balena-register-device/-/balena-register-device-6.1.0.tgz",
-      "integrity": "sha512-iPCm8HiZUG2xwNLVECaHx8g589jnqBDtCpLJ0ow7828xd0Spk9nF/GncRqiqmeo5OUZPnXW7prLkaRwu4s2Otg==",
+      "version": "6.1.1",
+      "resolved": "https://registry.npmjs.org/balena-register-device/-/balena-register-device-6.1.1.tgz",
+      "integrity": "sha512-ztwzs4/x8Pkf1DhZ/vFSteTR1jGJJmGjgnk7p9Fmj3RTa4Q3ucu6LGFm/Ugcc9y95epqAtssP7HStJ9Lsy2/eQ==",
       "requires": {
         "bluebird": "^3.7.2",
         "randomstring": "^1.1.5"
@@ -2326,9 +2326,9 @@
       },
       "dependencies": {
         "qs": {
-          "version": "6.9.3",
-          "resolved": "https://registry.npmjs.org/qs/-/qs-6.9.3.tgz",
-          "integrity": "sha512-EbZYNarm6138UKKq46tdx08Yo/q9ZhFoAXAI1meAFd2GtbRDhbZY2WQSICskT0c5q99aFzLG1D4nvTk9tqfXIw=="
+          "version": "6.9.4",
+          "resolved": "https://registry.npmjs.org/qs/-/qs-6.9.4.tgz",
+          "integrity": "sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ=="
         }
       }
     },
@@ -2400,9 +2400,9 @@
       }
     },
     "balena-settings-storage": {
-      "version": "5.0.0",
-      "resolved": "https://registry.npmjs.org/balena-settings-storage/-/balena-settings-storage-5.0.0.tgz",
-      "integrity": "sha512-alDQKM//J4wvjQXuv99ma3NsamZvHnwkxChwWpbBl9JMVr2kQHZpnsaw193wp7fdFKfNh3UFDdp1RYezDysXMA==",
+      "version": "5.0.2",
+      "resolved": "https://registry.npmjs.org/balena-settings-storage/-/balena-settings-storage-5.0.2.tgz",
+      "integrity": "sha512-379S8kNo1NYZvTE5+iRHQ0Q4+uSXIqsE+83gxF+onBjX6ecyF7b7Z+ZVvRbmIeo5rn6xGO2P5iW72ehL5tXgaw==",
       "requires": {
         "@resin.io/types-node-localstorage": "^1.3.0",
         "@types/bluebird": "^3.5.8",
