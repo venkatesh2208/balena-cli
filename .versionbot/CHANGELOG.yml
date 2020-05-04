@@ -1,4 +1,14 @@
 - commits:
+    - subject: Cache username for a given auth to avoid fetching it every time
+      hash: 2af149828243dc0e9c6039185323831bc43aa8ee
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 11.32.15
+  date: 2020-05-04T15:04:58.961Z
+- commits:
     - subject: Disable oclif's ts-node registering when running against built code
       hash: dd20a8b00fa195d34bf4e0305fef96e876851c21
       body: ''
