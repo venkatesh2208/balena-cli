@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update resin-multibuild
+      hash: ae41380998dbd37e470a20a072e50f7749e0c93d
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Scott Lowe <scott@balena.io>
+        signed-off-by: Scott Lowe <scott@balena.io>
+      author: Scott Lowe
+  version: 11.32.16
+  date: 2020-05-08T15:18:19.186Z
+- commits:
     - subject: 'Improve presentation of errors, help'
       hash: 98a2c0635db750e86c6f7d980b2ee3a04677a560
       body: ''
